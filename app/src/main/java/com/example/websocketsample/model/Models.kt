@@ -1,4 +1,4 @@
-package com.example.websocketsample
+package com.example.websocketsample.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

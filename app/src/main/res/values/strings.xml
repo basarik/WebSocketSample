@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">WebSocketSample</string>
+    <string name="send">Gönder</string>
+    <string name="state">Durum</string>
+    <string name="connect">Bağlan</string>
+    <string name="disconnect">Bağlantıyı Kes</string>
+    <string name="connected">Bağlandın</string>
+    <string name="disconnected">Bağlantı kapandı</string>
+    <string name="errorWebSocket">Teknik nedenden dolayı hata oluştu, lütfen tekrar bağlantı kurun</string>
+    <string name="youWrote">En son %1$s yazdın</string>
     <string name="loadingMessage">Lütfen bekleyin, bilgiler alınıyor…</string>
 </resources>

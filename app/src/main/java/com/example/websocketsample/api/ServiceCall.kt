@@ -1,7 +1,7 @@
 package com.example.websocketsample.api
 
 
-import com.example.websocketsample.DataModel
+import com.example.websocketsample.model.DataModel
 import retrofit2.Call
 import retrofit2.http.GET
 

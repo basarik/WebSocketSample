@@ -14,5 +14,7 @@ class Constants {
          * global response fail error
          */
         const val ERROR_OCCURRED = "An error occurred"
+
+        const val WEB_SOCKET_URL = "ws://echo.websocket.org"
     }
 }

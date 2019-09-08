@@ -41,14 +41,18 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * show loading
      */
     override fun showProgress() {
-        loading.show()
+        runOnUiThread {
+            loading.show()
+        }
     }
 
     /**
      * hide loading
      */
     override fun hideProgress() {
-        loading.hide()
+        runOnUiThread {
+            loading.hide()
+        }
     }
 
     override fun onError(t: Throwable) {

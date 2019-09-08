@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.websocketsample.model.KeyValueModel
 import kotlinx.android.synthetic.main.list_item_model.view.*
 
 //
