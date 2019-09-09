@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), MainContract.View {
 
     private lateinit var presenter: MainContract.Presenter
-    private var connectionState: ConnectionState = ConnectionState.Disconnected
     private lateinit var adapter: ListAdapter
+    private var connectionState: ConnectionState = ConnectionState.Disconnected
     private var listOfItems = listOf<KeyValueModel>()
 
     override fun layoutResource(): Int = R.layout.activity_main

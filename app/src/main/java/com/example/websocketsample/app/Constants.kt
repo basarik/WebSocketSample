@@ -15,6 +15,9 @@ class Constants {
          */
         const val ERROR_OCCURRED = "An error occurred"
 
+        /**
+         * web socket url
+         */
         const val WEB_SOCKET_URL = "ws://echo.websocket.org"
     }
 }
