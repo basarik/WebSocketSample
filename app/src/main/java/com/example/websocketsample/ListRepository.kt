@@ -1,7 +1,9 @@
-package com.example.websocketsample.app
+package com.example.websocketsample
 
-import com.example.websocketsample.MyWebSocketListener
 import com.example.websocketsample.api.ServiceCall
+import com.example.websocketsample.app.ApiResponse
+import com.example.websocketsample.app.Constants
+import com.example.websocketsample.app.OnResponseListener
 import com.example.websocketsample.model.DataModel
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -22,7 +24,8 @@ interface ListRepository {
     fun sendMessageByWebSocket(message: String)
 }
 
-class ListRepositoryImpl(private val service: ServiceCall) : ListRepository {
+class ListRepositoryImpl(private val service: ServiceCall) :
+    ListRepository {
 
     private lateinit var ws: WebSocket
 
@@ -40,9 +43,17 @@ class ListRepositoryImpl(private val service: ServiceCall) : ListRepository {
             ) {
                 response.body().apply {
                     if (response.code() == Constants.RESPONSE_SUCCESS_CODE) {
-                        listener.onResponse(ApiResponse.success(response.body()!!))
+                        listener.onResponse(
+                            ApiResponse.success(
+                                response.body()!!
+                            )
+                        )
                     } else {
-                        listener.onResponse(ApiResponse.error(Throwable(Constants.ERROR_OCCURRED)))
+                        listener.onResponse(
+                            ApiResponse.error(
+                                Throwable(Constants.ERROR_OCCURRED)
+                            )
+                        )
                     }
                 }
             }

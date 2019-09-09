@@ -1,7 +1,6 @@
 package com.example.websocketsample
 
 import com.example.websocketsample.app.ApiResponse
-import com.example.websocketsample.app.ListRepository
 import com.example.websocketsample.app.OnResponseListener
 import com.example.websocketsample.app.isNumeric
 import com.example.websocketsample.base.BasePresenter

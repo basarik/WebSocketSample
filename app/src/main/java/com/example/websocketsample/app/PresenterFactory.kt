@@ -1,5 +1,7 @@
 package com.example.websocketsample.app
 
+import com.example.websocketsample.ListRepository
+import com.example.websocketsample.ListRepositoryImpl
 import com.example.websocketsample.MainContract
 import com.example.websocketsample.MainPresenter
 
@@ -11,7 +13,8 @@ open class PresenterFactory {
     /**
      * listRepository
      */
-    open fun listRepository(): ListRepository = ListRepositoryImpl(App.instance.service)
+    open fun listRepository(): ListRepository =
+        ListRepositoryImpl(App.instance.service)
 
     /**
      * listPresenter
