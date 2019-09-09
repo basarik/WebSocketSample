@@ -11,7 +11,7 @@ data class KeyValueModel(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")
-    val name: String
+    var name: String
 ) : Serializable
 
 data class DataModel(

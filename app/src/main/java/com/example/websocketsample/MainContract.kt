@@ -19,6 +19,7 @@ interface MainContract {
         fun onDisConnected()
         fun onMessage(message: String)
         fun onFailure()
+        fun onListItemChange(index: Int, name: String)
     }
 
     /**
@@ -30,5 +31,7 @@ interface MainContract {
         fun closeConnection()
         fun getConnection(connectionState: ConnectionState)
         fun sendMessage(connectionState: ConnectionState, message:String)
+        fun checkMessage(message: String)
+        fun changeListItem(index: Int, name: String)
     }
 }

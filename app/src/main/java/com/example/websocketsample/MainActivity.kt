@@ -10,6 +10,8 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     private lateinit var presenter: MainContract.Presenter
     private var connectionState: ConnectionState = ConnectionState.Disconnected
+    private lateinit var adapter: ListAdapter
+    private var listOfItems = listOf<KeyValueModel>()
 
     override fun layoutResource(): Int = R.layout.activity_main
 
@@ -29,6 +31,10 @@ class MainActivity : BaseActivity(), MainContract.View {
         }
     }
 
+    override fun onListItemChange(index: Int, name: String) {
+        changeItem(index, name)
+    }
+
     override fun onConnected() {
         updateTitle(getString(R.string.connected))
         updateConnectionButton(R.string.disconnect)
@@ -45,6 +51,7 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun onMessage(message: String) {
         updateTitle(getString(R.string.youWrote, message))
+        presenter.checkMessage(message)
     }
 
     override fun onFailure() {
@@ -53,7 +60,9 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun onGetList(list: List<KeyValueModel>) {
-        activity_main_rv_list.adapter = ListAdapter(list)
+        listOfItems = list
+        adapter = ListAdapter(listOfItems)
+        activity_main_rv_list.adapter = adapter
     }
 
     override fun onDestroy() {
@@ -76,6 +85,13 @@ class MainActivity : BaseActivity(), MainContract.View {
     private fun enableButton(enabled: Boolean) {
         runOnUiThread {
             activity_main_button_send.isEnabled = enabled
+        }
+    }
+
+    private fun changeItem(index: Int, name: String) {
+        runOnUiThread {
+            listOfItems[index].name = name
+            adapter.notifyItemChanged(index)
         }
     }
 }
