@@ -11,9 +11,9 @@ import com.example.websocketsample.model.KeyValueModel
 // Copyright (c) 2019 kubuzcu. All rights reserved.
 //
 
-class MockListRepository : ListRepository {
+open class MockListRepository : ListRepository {
     var isSuccess = true
-    var isSocketOpen = true
+    var localListener:MyWebSocketListener? = null
 
     override fun getList(listener: OnResponseListener<DataModel>) {
         if (isSuccess) {
@@ -24,17 +24,16 @@ class MockListRepository : ListRepository {
     }
 
     override fun openWebSocket(listener: MyWebSocketListener) {
-        if (isSocketOpen) {
-            listener.onConnectionOpen()
-        } else {
-            listener.onConnectionClose()
-        }
+        localListener = listener
+        listener.onConnectionOpen()
     }
 
     override fun closeWebSocket() {
+        localListener?.onConnectionClose()
     }
 
     override fun sendMessageByWebSocket(message: String) {
+        localListener?.onMessage(message)
     }
 
     companion object {

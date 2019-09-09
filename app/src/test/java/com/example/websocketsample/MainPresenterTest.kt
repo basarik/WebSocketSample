@@ -1,10 +1,12 @@
 package com.example.websocketsample
 
+import com.example.websocketsample.model.ConnectionState
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Test
+import org.mockito.internal.verification.AtLeast
 
 class MainPresenterTest {
 
@@ -59,7 +61,6 @@ class MainPresenterTest {
 
     @Test
     fun openConnection() {
-        repository.isSocketOpen = true
         presenter.openConnection()
 
         verify(view).showProgress()
@@ -69,11 +70,19 @@ class MainPresenterTest {
 
     @Test
     fun closeConnection() {
-        repository.isSocketOpen = false
         presenter.openConnection()
+        presenter.closeConnection()
 
-        verify(view).showProgress()
-        verify(view).hideProgress()
+        verify(view, AtLeast(1)).showProgress()
         verify(view).onDisConnected()
+    }
+
+    @Test
+    fun sendMessage() {
+        presenter.openConnection()
+        presenter.sendMessage(ConnectionState.Connected, "mock message")
+
+        verify(view, AtLeast(1)).showProgress()
+        verify(view).onMessage(any())
     }
 }
